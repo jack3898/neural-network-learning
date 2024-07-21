@@ -4,6 +4,7 @@ use std::fmt::Display;
 pub struct Node {
     pub value: f32,
     pub weight: f32,
+    pub inputs: Vec<Node>,
 }
 
 impl From<f32> for Node {
@@ -11,13 +12,18 @@ impl From<f32> for Node {
         Self {
             value: item,
             weight: 1.0,
+            inputs: vec![],
         }
     }
 }
 
 impl From<(f32, f32)> for Node {
     fn from((value, weight): (f32, f32)) -> Self {
-        Self { value, weight }
+        Self {
+            value,
+            weight,
+            inputs: vec![],
+        }
     }
 }
 
@@ -35,7 +41,11 @@ impl Display for Node {
 
 impl Node {
     pub fn new(value: f32, weight: f32) -> Self {
-        return Self { value, weight };
+        return Self {
+            value,
+            weight,
+            inputs: vec![],
+        };
     }
 
     pub fn mul(&self) -> f32 {
@@ -57,7 +67,8 @@ mod node_tests {
         assert_eq!(
             Node {
                 value: 0.5,
-                weight: 1.0
+                weight: 1.0,
+                inputs: vec![]
             },
             0.5.into()
         )
@@ -68,7 +79,8 @@ mod node_tests {
         assert_eq!(
             Node {
                 value: 1.0,
-                weight: 0.5
+                weight: 0.5,
+                inputs: vec![]
             },
             (1.0, 0.5).into()
         )
