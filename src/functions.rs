@@ -22,6 +22,14 @@ pub fn dot(vec1: &Vec<f64>, vec2: &Vec<f64>) -> Result<f64, &'static str> {
     Ok(dot)
 }
 
+fn elu(x: f64, alpha: f64) -> f64 {
+    if x > 0.0 {
+        x
+    } else {
+        alpha * (x.exp() - 1.0)
+    }
+}
+
 #[cfg(test)]
 mod step_tests {
     use crate::functions::step;
