@@ -2,13 +2,13 @@ use std::fmt::Display;
 
 #[derive(Debug)]
 pub struct Node {
-    pub value: f32,
-    pub weight: f32,
+    pub value: f64,
+    pub weight: f64,
     pub inputs: Vec<Node>,
 }
 
-impl From<f32> for Node {
-    fn from(item: f32) -> Self {
+impl From<f64> for Node {
+    fn from(item: f64) -> Self {
         Self {
             value: item,
             weight: 1.0,
@@ -17,8 +17,8 @@ impl From<f32> for Node {
     }
 }
 
-impl From<(f32, f32)> for Node {
-    fn from((value, weight): (f32, f32)) -> Self {
+impl From<(f64, f64)> for Node {
+    fn from((value, weight): (f64, f64)) -> Self {
         Self {
             value,
             weight,
@@ -40,7 +40,7 @@ impl Display for Node {
 }
 
 impl Node {
-    pub fn new(value: f32, weight: f32) -> Self {
+    pub fn new(value: f64, weight: f64) -> Self {
         return Self {
             value,
             weight,
@@ -48,7 +48,7 @@ impl Node {
         };
     }
 
-    pub fn mul(&self) -> f32 {
+    pub fn mul(&self) -> f64 {
         self.value * self.weight
     }
 }

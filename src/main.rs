@@ -1,7 +1,8 @@
+pub mod functions;
+pub mod network;
 pub mod node;
-pub mod step;
 
-pub use step::*;
+pub use network::process_node_row;
 
 fn main() {
     // This is the start of my neural network learning.
@@ -21,16 +22,40 @@ fn main() {
     // Of course, the step function is one of, if not the most basic probability function neural networks can use. There are many others that I have yet to code up and try out.
 
     // Using -1 as a bias and 1 for the node weights results in an OR condition, you can pretend that this super basic network went through training to reach this conclusion.
-    println!("OR - 0 and 1 = {}", step(-1.0, &[0.0.into(), 1.0.into()]));
-    println!("OR - 0 and 0 = {}", step(-1.0, &[0.0.into(), 0.0.into()]));
-    println!("OR - 1 and 0 = {}", step(-1.0, &[1.0.into(), 0.0.into()]));
-    println!("OR - 1 and 1 = {}", step(-1.0, &[1.0.into(), 0.0.into()]));
+    println!(
+        "OR - 0 and 1 = {}",
+        process_node_row(-1.0, &[0.0.into(), 1.0.into()])
+    );
+    println!(
+        "OR - 0 and 0 = {}",
+        process_node_row(-1.0, &[0.0.into(), 0.0.into()])
+    );
+    println!(
+        "OR - 1 and 0 = {}",
+        process_node_row(-1.0, &[1.0.into(), 0.0.into()])
+    );
+    println!(
+        "OR - 1 and 1 = {}",
+        process_node_row(-1.0, &[1.0.into(), 0.0.into()])
+    );
 
     // Likewise, pretend we trained our basic network for AND conditions. After training, the bias weight was adjusted to be -2 and the weights of each node remain unchanged.
-    println!("AND - 0 and 1 = {}", step(-2.0, &[0.0.into(), 0.0.into()]));
-    println!("AND - 0 and 0 = {}", step(-2.0, &[0.0.into(), 0.0.into()]));
-    println!("AND - 1 and 0 = {}", step(-2.0, &[1.0.into(), 0.0.into()]));
-    println!("AND - 1 and 1 = {}", step(-2.0, &[1.0.into(), 1.0.into()]));
+    println!(
+        "AND - 0 and 1 = {}",
+        process_node_row(-2.0, &[0.0.into(), 0.0.into()])
+    );
+    println!(
+        "AND - 0 and 0 = {}",
+        process_node_row(-2.0, &[0.0.into(), 0.0.into()])
+    );
+    println!(
+        "AND - 1 and 0 = {}",
+        process_node_row(-2.0, &[1.0.into(), 0.0.into()])
+    );
+    println!(
+        "AND - 1 and 1 = {}",
+        process_node_row(-2.0, &[1.0.into(), 1.0.into()])
+    );
 
     // This is the first step in my neural network journey!
     // REFERENCE: https://youtu.be/J1QD9hLDEDY?si=2Q-T_5HlbhgwH6PB
